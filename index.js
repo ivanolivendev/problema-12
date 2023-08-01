@@ -34,24 +34,37 @@ function processData(input) {
     // console.log(restanteString)
     // console.log(primeiroCaracter)
 
-    const caracteres = input.split('')
+    // acima tenho a 1 abordagem a qual desisti, essa segunda é baseada numa sugestão da internet,
+    //porém assim como a segunda roda e é reprovada nos testes.
+
+    let caracteres = input.split('')
+    // transforma minha palavra num array de caracteres para tratar o problema
+    // com metodos de array
 
     let primeiraLetra = caracteres[0]
+    //analiso o primeiro caracter
     let restante = caracteres.slice(1, caracteres.length)
+    //analiso os demais caraceteres
 
+    //1º Situação: primeira letra é minuscula e o restante é minuscula
     let primeiraMinusculaRestoMaiuscula = restante.every((letra) => {
         return letra === letra.toUpperCase();
     }) && primeiraLetra === primeiraLetra.toLowerCase()
 
+    // 2º Situação: todas as letras são minusculas
     let tudoMinuscula = primeiraLetra === primeiraLetra.toLowerCase() &&
         restante.every((letra) => {
             return letra === letra.toLowerCase()
         })
 
+    // 3 situação: todas as letras são maisculas
     let tudoMaiscula = primeiraLetra === primeiraLetra.toUpperCase() &&
         restante.every((letra) => {
             return letra === letra.toUpperCase()
         })
+
+    // nesse ponto jogo as possibilidades dentro de uma codicional,
+    // dependendo de onde cair, jogo dentro de uma condicional
 
     if (primeiraMinusculaRestoMaiuscula) {
         let novoPrimeira = primeiraLetra.toUpperCase();
@@ -71,3 +84,5 @@ function processData(input) {
 }
 
 processData("cAPS")
+
+// como falado, o resultado é correto, porém nos testes do hackEanker ele não passa
